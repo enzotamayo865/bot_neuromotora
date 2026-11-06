@@ -290,10 +290,8 @@ td.badges{width:1%;white-space:nowrap}td.badges .reg{display:block;width:max-con
    CONFIGURACIÓN
    ===================================================================== */
 const MINUTOS_REINICIO = 3;   // modo muestra: reinicia tras X minutos sin uso
-const PAGINA_IES = "https://enzotamayo865.github.io/Chat_bot/";   // asistente con todas las carreras
 const NEXO = "https://nexo.jujuy.edu.ar:4200/#/auth/login";
 const BIBLIOTECA = "https://red.infd.edu.ar/biblioteca-nuestra-escuela/";
-const PORTAL = "https://panel-administrativo-ies10.vercel.app/modules/sectores/general/general.html";
 
 /* =====================================================================
    DATOS DE LA CARRERA — Profesorado de Educación Especial Orientación en Discapacidad Neuro-motora
@@ -552,7 +550,7 @@ function MENU(id){
     {t:"Correlativas para rendir", go:"corr"}]};
   if (k==="tram") return {t:"Trámites", intro:"<p>Elegí un trámite:</p>", op:[
     {t:"Equivalencias y asimilación", html:()=>`<p>Para pedir equivalencias o la asimilación de materias aprobadas en otra carrera o institución, presentás tu <strong>certificado analítico</strong> en el período que fija la sede. Las fechas se consultan en secretaría.</p>`},
-    {t:"Cambiarme de carrera", html:()=>`<p>Podés inscribirte en otra carrera y, si tenés materias aprobadas que coinciden, pedir equivalencias o asimilación presentando tu analítico en el período que fija la sede.</p><p>Las demás carreras del IES N°10 están en el <a href="${PAGINA_IES}" target="_blank" rel="noopener">asistente de carreras del IES N°10</a>.</p>`},
+    {t:"Cambiarme de carrera", html:()=>`<p>Podés inscribirte en otra carrera y, si tenés materias aprobadas que coinciden, pedir equivalencias o asimilación presentando tu analítico en el período que fija la sede.</p>`},
     {t:"Recursar una materia", html:()=>`<p>Si quedás libre o se vence la regularidad, la podés volver a cursar al año siguiente. Cómo se reinscribe se informa en secretaría.</p>`},
     {t:"Dejar la carrera y volver", html:()=>`<p>Si dejás la carrera, las materias aprobadas quedan en tu analítico. Para volver te reinscribís; las regularidades pueden haberse vencido. La reincorporación se consulta en secretaría.</p>`},
     {t:"Constancia de alumno regular", html:()=>`<p>La constancia de alumno regular se pide en la <strong>secretaría de la sede</strong>. Sirve para el BEGUP (boleto gratuito), becas o el trabajo.</p>`},
@@ -619,7 +617,6 @@ function MENU(id){
     {t:"📍 Dónde queda la sede", html:SEDE_HTML},
     {t:"🚌 Cómo llegar", html:()=>SEDE_HTML()+`<p>🚌 Como estudiante del IES N°10 podés tramitar el <strong>BEGUP</strong> (boleto gratuito para colectivos urbanos e interurbanos de Jujuy). Está en <strong>Becas y beneficios</strong>.</p>`},
     {t:"🏫 El instituto", go:"inst"},
-    {t:"🌐 Otras carreras del IES N°10", html:()=>`<p>El IES N°10 tiene 24 carreras en 4 sedes. Podés verlas todas en el asistente de carreras:</p><p>👉 <a href="${PAGINA_IES}" target="_blank" rel="noopener">Asistente de Carreras del IES N°10</a></p><p>👉 <a href="${PORTAL}" target="_blank" rel="noopener">Portal del IES N°10</a></p>`},
     {t:"🤖 ¿Quién hizo este asistente?", html:()=>`<p>Es un asistente virtual hecho por estudiantes del IES N°10. Responde con la información de los documentos oficiales del Profesorado de Educación Especial Orientación en Discapacidad Neuro-motora.</p>`}]};
   if (k==="inst") return {t:"El instituto", intro:"<p>Elegí una opción:</p>", op:[
     {t:"Comedor", html:()=>`<p>El IES N°10 no tiene comedor.</p>`},
@@ -655,8 +652,7 @@ function render(){
   <details class="sec"><summary>✅ Cursada y aprobación</summary><div class="sec-b"><ul><li><strong>Asistencia:</strong> 80% para regularizar (60% si trabajás, con constancia).</li><li><strong>Trabajos prácticos:</strong> 80% aprobados.</li><li><strong>Promoción:</strong> 7 o más en los parciales y 80% de los trabajos prácticos; si no, examen final.</li><li><strong>Libres por opción:</strong> ${libres().map(m=>esc(m.n)).join(", ")}.</li></ul></div></details>
   <details class="sec"><summary>📝 Inscripción</summary><div class="sec-b"><ul><li><strong>Preinscripción:</strong> en diciembre, online en <a href="${NEXO}" target="_blank" rel="noopener">NEXO</a>.</li><li><strong>Inscripción definitiva:</strong> en febrero y marzo, en la secretaría de la sede.</li><li><strong>Ingreso:</strong> examen eliminatorio según la demanda y el cupo.</li><li><strong>Papeles:</strong> DNI, título secundario o constancia en trámite, CUIL, 2 fotos carnet, acta de nacimiento autenticada, certificado de residencia, planilla prontuarial, planilla psicofísica o carnet sanitario, correo electrónico y teléfono.</li></ul></div></details>
   <details class="sec"><summary>📍 Sede y horario</summary><div class="sec-b">${SEDE_HTML()}</div></details>
-  <details class="sec"><summary>📜 Título, validez y normativa</summary><div class="sec-b">${VALIDEZ_HTML()}<p><strong>Normativa</strong></p>${NORMATIVA_HTML()}</div></details>
-  <a class="otras-link" href="${PAGINA_IES}" target="_blank" rel="noopener">Ver todas las carreras del IES N°10 →</a>`;
+  <details class="sec"><summary>📜 Título, validez y normativa</summary><div class="sec-b">${VALIDEZ_HTML()}<p><strong>Normativa</strong></p>${NORMATIVA_HTML()}</div></details>`;
   $("#btnAsk").onclick = abrirChat;
   document.querySelectorAll(".yrtab").forEach(b=>b.onclick=()=>{ anioSel=+b.dataset.a; document.querySelectorAll(".yrtab").forEach(x=>x.classList.toggle("on",x===b)); $("#tablaAnio").innerHTML=tablaAnio(anioSel); });
 }
